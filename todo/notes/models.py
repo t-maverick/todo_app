@@ -17,7 +17,7 @@ class Note(models.Model):
     date_created = models.DateTimeField(auto_now=True)
     date_edited = models.DateTimeField(auto_now_add=True, blank=True)
     note_list = models.ForeignKey(NotesList, on_delete=models.CASCADE)
-    
+    note_status = models.BooleanField(default=True)
     def get_absolute_url(self):
         return reverse("item-update", args=[str(self.note_list.id), str(self.id)])
     
