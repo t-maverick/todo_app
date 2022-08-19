@@ -9,7 +9,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
-bootstrap-5_2_1
 develop-eggs/
 dist/
 downloads/
