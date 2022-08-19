@@ -1,15 +1,34 @@
-from msilib.schema import ListView
+from urllib import request
 from django.shortcuts import render
-from django.http import Http404
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView, View, CreateView, UpdateView, DeleteView, FormView
+from django.urls import reverse_lazy
 
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 from .models import Note, NotesList
 
-class ListNotesList(ListView):
+class CustomLoginView(LoginView):
+    template_name = 'notes/login.html'
+    fields ='__all__'
+    redirect_authenticated_user = True
+    
+    def get_success_url(self) -> str:
+        return reverse_lazy('tasks')
+    
+class RegisterPage(FormView):
+    template_name = 'notes/register'
+    form_class = UserCreationForm
+    redirect_authenticated_user = True
+    
+class HomePage(TemplateView):
+    template_name = 'notes/home.html'
+    
+class NotesList(ListView):
     model = NotesList
     template_name = 'notes/notes-list.html'
 
-class ListNote(ListView):
+class Note(ListView):
     model = Note
     template_name = 'notes/note.html'
     

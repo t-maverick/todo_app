@@ -1,6 +1,6 @@
+from wsgiref.validate import validator
 from django.db import models
 from django.urls import reverse
-
 
 class NotesList(models.Model):
     title = models.CharField(max_length=20, blank=True, null=True, unique=True)
