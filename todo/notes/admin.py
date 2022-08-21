@@ -1,5 +1,5 @@
 from django.contrib import admin
-from notes.models import NotesList, Note
+from notes.models import TaskItem, Category
 
-admin.site.register(NotesList)
-admin.site.register(Note)
+admin.site.register(TaskItem)
+admin.site.register(Category)
