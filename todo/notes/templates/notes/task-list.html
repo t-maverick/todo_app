@@ -11,10 +11,15 @@
 </head>
 <body>
     <ul class="list-group">
-        <li class="list-group-item disabled" aria-disabled="true">A disabled item</li>
-        <li class="list-group-item">Category: {{ task.category }}</li>
-        <li class="list-group-item">Title: {{ task.title }}</li>
-        <li class="list-group-item">Text: {{ task.text }}</li>
+        <li class="list-grou<p-item disabled" aria-disabled="true">A disabled item</li>
+        {% for task in object_list %}
+        
+        <li class="list-group-item">{{ task.title }}</li>
+        <a href="{% url 'task' task.id %}">View</a>
+
+        {% empty %}
+            <h3>No items in a list</h3> 
+        {% endfor %}
       </ul>
 </body>
 </html>

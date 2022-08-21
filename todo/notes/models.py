@@ -26,7 +26,7 @@ class TaskItem(models.Model):
     text = models.TextField(null=True, blank=True)
     due_date = models.DateTimeField(default=timezone.now)
     unfinished = models.BooleanField(default=True)
-    category_task = models.ForeignKey(
+    category = models.ForeignKey(
         Category, on_delete=models.CASCADE)
     
     def __str__(self):
