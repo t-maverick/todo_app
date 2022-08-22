@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+</head>
+<body>
+  <div class="mb-5 mt-4">
+    <button type="button" class="btn btn-light">
+      <a href="{% url 'create-task' %}">Create</a>
+    </button>
+  </div>
+
+    <div class="border border-warning">
+            <div class="list-group">
+                {% for task in object_list %}
+                <a href="{% url 'task' task.id %}" class="list-group-item w-50 list-group-item-action rounded-pill" aria-current="true">
+                  <div class="d-flex w-90 justify-content-between">
+                    <h5 class="mb-1">{{ task.title }}</h5>
+                    <small>{{ task.due_date }}</small>
+                  </div>
+                  <p class="mb-1">{{ task.text }}</p>
+                  <small>And some small print.</small>
+                </a>
+                <button type="button" class="btn btn-light">
+                  <a href="{% url 'update-task' task.id %}">Update</a>
+                </button>
+                {% endfor %}
+            </div>
+    </div>
+</body>
+</html>

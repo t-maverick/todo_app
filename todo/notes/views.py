@@ -1,5 +1,3 @@
-from asyncio import Task
-from urllib import request
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
@@ -19,22 +17,28 @@ class HomePage(ListView):
 
 class TaskList(ListView):
     model = TaskItem
-    template_name = 'notes/task-list.html'
+    template_name = 'notes/task_list.html'
     context_object_name = 'tasks'
 
-class TaskItem(DetailView):
+class TaskDetail(DetailView):
     model = TaskItem
+    template_name = 'notes/task.html'
     context_object_name = 'task'
-    template_name = 'notes/note.html'
+
     
 class CreateTask(CreateView):
     model = TaskItem
-    template_name = 'notes/task_create_form.html'
+    template_name = 'notes/create_task.html'
+    context_object_name = 'create_task'
     form_class = TaskItemForm
     succes_url = reverse_lazy('tasks')
     
 class UpdateTask(UpdateView):
     model = TaskItem
+    template_name = 'notes/update_task.html'
+    context_object_name = 'update_task'
+    form_class = TaskItemForm
+    succes_url = reverse_lazy('tasks')
     
 class DeleteTask(DeleteView):
     model = TaskItem
